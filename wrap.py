@@ -46,9 +46,24 @@ except AttributeError as e:
 except Exception as e:
     print(f"An unexpected error occurred during parsing or data extraction: {e}")
 
-import pandas as pd
+def save_table_to_csv(url, output_file):
+    import pandas as pd
+    try:
+        print("Attempting to read tables from the URL using pandas...")
+        tables = pd.read_html(url)
+        print(f"Successfully read {len(tables)} tables.")
+        
+        df = tables[0]  # First table
+        print("First table preview:")
+        print(df.head())
+        
+        print(f"Saving the first table to '{output_file}'...")
+        df.to_csv(output_file, index=False)
+        print("CSV file saved successfully.")
+    except ValueError as e:
+        print(f"Value error occurred while reading tables: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred during table extraction or CSV export: {e}")
 
-tables = pd.read_html(url)
-df = tables[0]  # First table
-print(df.head())
-df.to_csv("population_data.csv", index=False)
+# Call the function
+save_table_to_csv(url, "population_data.csv")

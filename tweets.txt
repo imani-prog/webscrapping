@@ -1,0 +1,3 @@
+{"text": "This is a sample tweet", "lang": "en"}
+{"text": "Otro tweet de ejemplo", "lang": "es"}
+{"text": "Un autre tweet d'exemple", "lang": "fr"}
